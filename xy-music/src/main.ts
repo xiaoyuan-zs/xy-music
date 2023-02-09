@@ -3,6 +3,8 @@ import App from './App.vue'
 import {createPinia} from "pinia";
 const store = createPinia()
 import router from "@/router";
+import 'nprogress/nprogress.css';
+
 
 createApp(App)
     .use(store)
