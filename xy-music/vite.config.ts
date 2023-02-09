@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
+
 export default defineConfig({
   plugins: [vue(),
     AutoImport({
@@ -17,7 +18,9 @@ export default defineConfig({
   server:{
     proxy:{
       '/api': {
-        target: 'https://api.vvhan.com',
+        target: "http://localhost:9000",
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/api/,' ')
       }
     }
   }
