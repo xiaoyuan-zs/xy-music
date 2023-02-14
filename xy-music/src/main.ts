@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import './assets/style/main.css'
 import {createPinia} from "pinia";
 const store = createPinia()
 import router from "@/router";
