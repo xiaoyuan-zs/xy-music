@@ -7,7 +7,21 @@
 <body>
     <script>
 
-        // 高阶函数
+        /**
+         根据函数调用方式不同，this的指向也不同：
+            1. 以函数形式调用，this指向window
+            2. 以方法形式调用，this执行调用方法的对象
+            3. 构造函数中，this指向当前对象
+            4. 箭头函数没有自己的this，往外寻找this（由外层作用域决定）
+            5. 通过call或apply调用的函数，他们的第一个参数就是this指向
+            6. 通过bind返回的函数，this由bind第一个参数决定（无法修改this）
+            7. 箭头函数this无法修改， 因为自身没有this
+         */
+
+
+        /**
+         * 高阶函数
+         */
         function test(){
             return 'test123'
         }
@@ -22,7 +36,7 @@
         }
 
         let result = highFn(test)
-        console.log(result())
+        // console.log(result())
 
 
 
@@ -66,6 +80,64 @@
 
         newFn = null
         newFn1 = null
+
+
+        /**
+
+         call和apply 相同点
+            1. 调用fn.call()，fn。apply() 与直接调用fn() 一样
+            2. 除了调用函数，还可以用来指定this的指向
+            3. 第一个参数 函数的this
+
+
+         不同点：
+            1. call（this, 参数1，参数2，。。。）
+            2. apply（this, [参数1， 参数2， 。。。]）
+         */
+
+        function fn(){
+            console.log('函数执行了', this)
+        }
+        const obj = {name: '张三',fn}
+        fn.call(obj)
+
+        function fn2(a,b){
+            console.log('函数执行了','a=',a,'b=',b,'===>', this)
+        }
+
+        fn2.call(obj,1,2)
+        fn2.apply(obj,[1,2])
+
+
+        /**
+            bind（） 函数， 可以用来创建一个新的函数
+                -bind 可以为新函数绑定this
+                -bind 可以为新函数绑定参数
+         */
+
+        function fn3(a,b,c){
+            console.log('函数执行了',a,b,c,'===>', this)
+        }
+
+        const obj1 = {name: '张三',fn}
+
+        let newFn2 = fn3.bind(obj1,10,20,30)
+        newFn2()
+
+
+
+
+        /**
+            深克隆 与 浅克隆
+            浅克隆：
+                只复制对象第一层，第二层往下不复制，与原对象一样指向同一个对象
+                Object.assign()
+            深克隆：
+                对象不管有多少层，都会复制
+                structuredClone()
+                JSON.stringify()
+                JSON.parse()
+         */
 
     </script>
 </body>
