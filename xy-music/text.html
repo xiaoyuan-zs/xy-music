@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        // 高阶函数
+        function test(){
+            return 'test123'
+        }
+
+        // 传入一个回调函数，返回一个函数
+        // 通过外部函数对内部进行包装，修饰
+        function highFn(fb){
+            return () => {
+                console.log('调用了该方法')
+                return fb()
+            }
+        }
+
+        let result = highFn(test)
+        console.log(result())
+
+
+
+        // 闭包
+        /**
+            闭包：
+                闭包就是能够访问到外部函数作用域中变量的函数
+            什么时候使用：
+                当我们需要隐藏一些不希望被别人访问的内容时就可以使用闭包
+            条件：
+                1.函数的嵌套
+                2.内部函数要引用外部函数中的变量
+                3.内部函数要作为返回值返回
+
+
+            函数作用域链： 函数一定义就确定了他的作用域，与调用位置无关
+
+
+            闭包的生命周期：
+                1. 闭包在外部函数调用时产生，外部函数每次调用都会产生一个全新的闭包
+                2. 在内部函数丢失时销毁  (newFn = null)
+
+            注意事项：
+                闭包主要用来隐藏一些不希望被外部访问的内容
+                意味着闭包需要占用一定的内存的空间
+         */
+
+        function outer(){
+            let num = 0
+            return ()=>{
+                num++
+                console.log(num)
+            }
+
+        }
+        // 直接调用 outer() 则表示每次都会创建一个新的闭包
+        //let newFn = outer() 表示把返回值付给了newFn， 调用newFn 则是调用的是outer的返回值，outer并没有再调用
+
+        let newFn = outer() // 独立的闭包
+        let newFn1 = outer() // 独立的闭包
+
+        newFn = null
+        newFn1 = null
+
+    </script>
+</body>
+</html>

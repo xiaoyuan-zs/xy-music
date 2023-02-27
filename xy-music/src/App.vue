@@ -1,11 +1,8 @@
 <template>
-  <!--    <router-view/>-->
-    <dark/>
-
+      <router-view/>
 </template>
 
 <script setup lang="ts">
-import dark from '@/components/dark/dark.vue'
 
 </script>
 
