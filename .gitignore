@@ -29,3 +29,5 @@ hs_err_pid*
 **/.vscode
 **/vite.svg
 **/vue.svg
+**/svg.html
+**/test.html
