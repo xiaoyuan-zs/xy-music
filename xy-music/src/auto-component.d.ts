@@ -8,7 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Dark: typeof import('./components/dark/Dark.vue')['default']
-    ElSwitch: typeof import('element-plus/es')['ElSwitch']
+    LayConfigProvider: typeof import('@layui/layui-vue')['LayConfigProvider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

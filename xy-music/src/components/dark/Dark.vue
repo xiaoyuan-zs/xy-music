@@ -1,33 +1,19 @@
 <template>
-  <div>
-    <el-switch
-        @click="toggleDark()"
-        v-model="theme"
-        inline-prompt
-        style="--el-switch-on-color: #444;"
-        :active-icon="Moon"
-        :inactive-icon="Sunny"
-    >
-    </el-switch>
-  </div>
+    <lay-config-provider :theme="theme" :dark-partial="darkPartial">
+    </lay-config-provider>
 </template>
 
 <script setup lang='ts'>
 
-import {useDark, useToggle} from '@vueuse/core'
-import {Moon, Sunny} from '@element-plus/icons-vue'
-
-let theme = ref<boolean>(false)
-
-const isDark = useDark({
-  selector: 'html',
-  valueDark: 'dark',
-  valueLight: 'light',
-})
-const toggleDark = useToggle(isDark)
-
+const theme = ref('dark')
+const darkPartial = {
+    brightness: 100,
+    contrast: 90,
+    grayscale: 0,
+    darkSchemeBackgroundColor: "black",
+    darkSchemeTextColor: "white"
+}
 
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped></style>
